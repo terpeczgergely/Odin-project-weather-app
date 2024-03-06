@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather App</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <main class="weather-data-today">
+        <div class="weather-data-left">
+            <h2 id="weather-type"></h2>
+            <h3 id="weather-location"></h3>
+            <h3 id="weather-location-time"></h3>
+            <h1 id="weather-degree"></h1>
+            <h4 id="weather-degree-display"></h4>
+            <img id="weather-type-icon" src="" alt="">
+            <p> search option</p>
+        </div>
+        <div class="weather-data-right">
+            <div class="weather-data-right-wrapper">
+                <img src="./icons/thermometer.png" alt="thermometer" class="weather-data-right-image">
+                <div class="weather-data-right-container">
+                <h4 class="top-right-element" id="feelslike">Feel's like</h4>
+                <h1 class="bottom-right-element" id="feelslike-degree"></h1>
+                </div>
+            </div>
+            <div class="weather-data-right-wrapper">
+                <img src="./icons/humidity.png" alt="humidity" class="weather-data-right-image">
+                <div class="weather-data-right-container">
+                <h4 class="top-right-element" id="humidity">Humidity</h4>
+                <h1 class="bottom-right-element" id="humidity-percentage"></h1>
+                </div>
+            </div>
+            <div class="weather-data-right-wrapper">
+                <img src="./icons/winddir.png" alt="wind direction" class="weather-data-right-image">
+                <div class="weather-data-right-container">
+                <h4 class="top-right-element" id="wind-direction">Wind Direction</h4>
+                <h1 class="bottom-right-element" id="wind-direction-value"></h1>
+                </div>
+            </div>
+            <div class="weather-data-right-wrapper">
+                <img src="./icons/wind.png" alt="wind speed" class="weather-data-right-image">
+                <div class="weather-data-right-container">
+                <h4 class="top-right-element" id="wind-speed">Wind Speed</h4>
+                <h1 class="bottom-right-element" id="wind-speed-value"></h1>
+                </div>
+            </div>
+        </div>
+    </main>
+    <div class="weather-data-weekly">
+        <p> data from API</p>
+        <p> data from API</p>
+        <p> data from API</p>
+        <p> data from API</p>
+        <p> data from API</p>
+        <p> data from API</p>
+    </div>
+    <script src="main.js"></script>
+</body>
+</html>
