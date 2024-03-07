@@ -1,3 +1,8 @@
+const defaultLocation = "Budapest"
+let location = defaultLocation;
+let isCelsius = true;
+const key = "81dee91ab1544b219b0214517240503";
+
 const weatherTypeElement = document.getElementById("weather-type");
 const weatherLocationElement = document.getElementById("weather-location");
 const weatherLocationTimeElement = document.getElementById("weather-location-time");
@@ -8,21 +13,24 @@ const weatherFeelsLikePercentageElement = document.getElementById("feelslike-deg
 const weatherHumidityPercentageElement = document.getElementById("humidity-percentage");
 const weatherWindDirectionElement = document.getElementById("wind-direction-value");
 const weatherWindSpeedElement = document.getElementById("wind-speed-value");
+const searchLocationElement = document.getElementById("search-location")
+const errorElement = document.getElementById("error")
+searchLocationElement.addEventListener('blur', function() {
+    location = this.value
 
-let isCelsius = true;
-
-
-
-const key = "81dee91ab1544b219b0214517240503";
-console.log(key)
-
-
-const defaultLocation = "Budapest"
-const location = defaultLocation;
+  if (validateLocation(location)) {
+    errorElement.innerHTML = ""
+    fetchData(location);
+  } else {
+    errorElement.innerHTML = "Location was not provided!"
+    console.log("Failed to fetch weather, because location is missing")
+  }
+  
+});
 
 async function fetchData() {
     try {
-      const response = await fetch(`https://api.weatherapi.com/v1/current.json?key=${key}&q=${location}&days=5`, {
+      const response = await fetch(`https://api.weatherapi.com/v1/current.json?key=${key}&q=${location}`, {
         method: 'GET',
         mode: 'cors',
         headers: {
@@ -30,7 +38,12 @@ async function fetchData() {
         },
       });
   
+      if (!location) {
+        throw new Error('No location specified');
+      }
+
       if (!response.ok) {
+        errorElement.innerHTML = "Location was not found!"
         throw new Error('Network response was not ok');
       }
   
@@ -55,7 +68,7 @@ async function fetchData() {
      weatherWindDirectionElement.innerHTML = `${data.current.wind_dir} `
      weatherWindSpeedElement.innerHTML = `${data.current.wind_kph} km/h`  
       // Process the JSON data
-      console.log(data);
+      //console.log(data);
   
       return data; // Return the fetched data
     } catch (error) {
@@ -65,6 +78,12 @@ async function fetchData() {
   }
 
 fetchData()
+
+function validateLocation(location){
+  if (!location) {
+    return false
+  } else return true;
+}
 
 weatherDegreeElement.addEventListener('click', ()=> {
     !isCelsius ? isCelsius = true : isCelsius = false;
